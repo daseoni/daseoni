@@ -5,57 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>다서니 갈림길 리포트</title>
 <meta name="description" content="A냐 B냐, 결정 하나를 여러 점술 렌즈로 비춰 보는 갈림길 리포트 안내와 결제">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
+  /* 11/25 새 디자인(운명의 다섯 렌즈 · 나만의 운명 서신) 색·글꼴로 갈아입힘. 내용·결제 링크는 그대로 */
   :root{
-    --bg:#120d1f; --card:#1d1630; --line:#3a2d57; --text:#f1ecfa; --sub:#b9aed0;
-    --gold:#d9b46a; --violet:#9b7bd8; --btn:#d9b46a; --btntext:#1a1226;
+    --bg:#1e0412; --bg2:#2a0518; --card:#2f0a1d; --line:#6b3f2a; --text:#f6ead2; --sub:#d6bf97;
+    --gold:#e9b86a; --gold2:#f8e0ab; --deep:#c99a55; --btntext:#2a0518;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
-    line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:520px;margin:0 auto;padding:28px 16px 48px}
+  body{margin:0;color:var(--text);
+    background:radial-gradient(120% 60% at 50% 0%, #4a0c2a 0%, var(--bg2) 45%, var(--bg) 100%) fixed, var(--bg);
+    font-family:'Noto Serif KR','Nanum Myeongjo',"Apple SD Gothic Neo","Malgun Gothic",serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all}
+  .wrap{max-width:520px;margin:0 auto;padding:22px 16px 48px}
   header{text-align:center}
-  header img{width:112px;height:112px;border-radius:50%;border:2px solid var(--gold)}
-  h1{font-size:24px;margin:14px 0 4px;letter-spacing:-.3px}
+  .crest{color:var(--gold);font-size:22px;line-height:1}
+  .eyebrow{font-size:11px;letter-spacing:.32em;color:var(--deep);margin:6px 0 0}
+  .big{font-size:34px;font-weight:900;letter-spacing:.14em;margin:4px 0 0;
+    background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,var(--deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .rule{display:flex;align-items:center;gap:10px;color:var(--deep);font-size:12px;margin:4px 0 0}
+  .rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--deep),transparent)}
+  h1{font-size:22px;margin:12px 0 2px;color:var(--gold2);letter-spacing:-.2px}
   .tag{color:var(--sub);font-size:15px;margin:0}
-  h2{font-size:18px;margin:36px 0 12px;color:var(--gold)}
+  .hero{width:100%;display:block;margin-top:18px;border:1px solid var(--deep);border-radius:6px;
+    box-shadow:0 0 0 4px rgba(201,154,85,.15),0 10px 30px rgba(0,0,0,.45)}
+  h2{font-size:18px;margin:38px 0 14px;color:var(--gold);text-align:left;display:flex;align-items:center;gap:8px}
+  h2::before{content:"⚜";font-size:15px;color:var(--deep)}
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--deep),transparent)}
   p{margin:0 0 10px}
-  .hero{width:100%;border-radius:14px;margin-top:22px;display:block}
-  ol.steps{list-style:none;padding:0;margin:0;counter-reset:s}
-  ol.steps li{counter-increment:s;position:relative;padding:12px 14px 12px 50px;background:var(--card);
-    border:1px solid var(--line);border-radius:12px;margin-bottom:8px;font-size:15px}
-  ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:24px;height:24px;border-radius:50%;
-    background:var(--violet);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
-  .prod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:12px}
-  .prod.main{border-color:var(--gold)}
-  .prod .badge{display:inline-block;font-size:12px;color:var(--btntext);background:var(--gold);border-radius:20px;padding:2px 10px;margin-bottom:8px;font-weight:700}
-  .prod h3{margin:0 0 4px;font-size:17px}
-  .prod .price{font-size:22px;font-weight:800;margin:6px 0 8px}
-  .prod .price small{font-size:13px;font-weight:400;color:var(--sub)}
-  .prod ul{margin:0 0 14px;padding-left:18px;color:var(--sub);font-size:14px}
-  .btn{display:block;text-align:center;background:var(--btn);color:var(--btntext);text-decoration:none;font-weight:800;
-    padding:14px;border-radius:10px;font-size:16px}
-  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  ol.steps{list-style:none;padding:0;margin:0 0 12px;counter-reset:s}
+  ol.steps li{counter-increment:s;position:relative;padding:12px 14px 12px 52px;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;margin-bottom:8px;font-size:15px}
+  ol.steps li::before{content:counter(s,upper-roman);position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:50%;
+    border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .prod{position:relative;background:linear-gradient(180deg,#3a0e24,var(--card));border:1px solid var(--line);border-radius:8px;
+    padding:20px 18px 18px;margin-bottom:14px}
+  .prod::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,154,85,.25);border-radius:5px;pointer-events:none}
+  .prod.main{border-color:var(--gold);box-shadow:0 0 18px rgba(233,184,106,.18)}
+  .prod .badge{display:inline-block;font-size:12px;color:var(--btntext);background:linear-gradient(180deg,var(--gold2),var(--gold));
+    border-radius:20px;padding:2px 12px;margin-bottom:8px;font-weight:700}
+  .prod h3{margin:0 0 2px;font-size:18px;color:var(--gold2)}
+  .prod .price{font-size:26px;font-weight:900;margin:4px 0 8px;color:var(--gold)}
+  .prod .price small{font-size:13px;font-weight:500;color:var(--sub)}
+  .prod ul{margin:0 0 16px;padding-left:18px;color:var(--sub);font-size:14px}
+  .btn{position:relative;z-index:1;display:block;text-align:center;text-decoration:none;font-weight:900;padding:14px;border-radius:999px;font-size:16px;
+    color:var(--btntext);background:linear-gradient(180deg,#fbe8bf,var(--gold) 60%,var(--deep));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 4px 14px rgba(0,0,0,.35)}
+  .btn.ghost{background:transparent;color:var(--gold2);border:1px solid var(--gold);box-shadow:none}
   .note{font-size:13px;color:var(--sub)}
-  .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:14px}
   .box ul{margin:0;padding-left:18px}
   .box li{margin-bottom:4px}
   dl{display:grid;grid-template-columns:96px 1fr;gap:6px 10px;margin:0;font-size:14px}
   dt{color:var(--sub)} dd{margin:0}
-  footer{margin-top:36px;text-align:center;font-size:12px;color:var(--sub)}
+  footer{margin-top:40px;text-align:center;font-size:12px;color:var(--sub)}
+  footer::before{content:"⚜";display:block;color:var(--deep);font-size:16px;margin-bottom:6px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <img src="daseoni.jpg" alt="다서니">
+  <div class="crest">⚜</div>
+  <p class="eyebrow">SAJU REPORT · A ROYAL LETTER</p>
+  <div class="big">DASEONI</div>
+  <div class="rule">운명의 다섯 렌즈</div>
   <h1>다서니 갈림길 리포트</h1>
   <p class="tag">A냐 B냐, 결정 앞에 멈춘 당신에게</p>
 </header>
 
-<img class="hero" src="lenses.jpg" alt="사주명리·자미두수·서양점성술·수비학 렌즈 앞의 다서니">
+<img class="hero" src="hero.jpg" alt="다섯 렌즈의 서신을 든 다서니">
 
 <h2>어떤 리포트인가요</h2>
 <p>이직할까 버틸까, 고백할까 기다릴까. 고민 하나를 사주명리·자미두수·서양점성술·수비학 등 여러 렌즈로 따로 비춰 보고, 어디서 같은 말을 하고 어디서 갈리는지 정리해 드려요.</p>
